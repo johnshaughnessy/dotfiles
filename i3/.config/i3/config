@@ -236,8 +236,7 @@ exec_always feh --bg-fill $HOME/images/Mountain.png
 # I foget what this does
 popup_during_fullscreen smart
 
-# polybar
-exec_always --no-startup-id $HOME/.config/i3/polybar.sh &
+exec_always --no-startup-id $HOME/.config/polybar/polybar.sh &
 
 # i3-gaps
 gaps inner 16
