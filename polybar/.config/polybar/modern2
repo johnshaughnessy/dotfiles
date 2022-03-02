@@ -16,7 +16,7 @@ alert = #e60053
 
 [bar/top]
 width = 100%
-height = 64
+height = 32
 offset-x = 0
 offset-y = -1 
 bottom = true
@@ -37,14 +37,16 @@ padding-right = 0
 module-margin-left = 0 
 module-margin-right = 0
 
-font-0 = Noto Sans:pixelsize=32;8
-font-1 = FontAwesome:size=38;12
-font-2 = siji:pixelsize=32;0
+; font-0 = Noto Sans:pixelsize=32;8
+; font-1 = FontAwesome:size=38;12
+; font-2 = siji:pixelsize=32;0
+font-0 = Noto Sans:pixelsize=16;2
+font-1 = FontAwesome:size=16;2
+font-2 = siji:pixelsize=16;0
 
 ; modules-left = bspwm xwindow
 ; modules-left = xwindow
 modules-center = i3
-; modules-right = battery volume mpd spotify date powermenu
 modules-right = wlan battery volume mpd date powermenu
 
 ;tray-position = right
@@ -165,7 +167,7 @@ type = internal/battery
 full-at = 99
 
 battery = BAT1
-adapter = AC1
+adapter = AC0
 
 poll-interval = 5
 

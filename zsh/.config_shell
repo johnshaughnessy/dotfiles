@@ -1,0 +1,8 @@
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias info='info --vi-keys'
+
+set -o ignoreeof
+
+alias e="emacsclient -n"

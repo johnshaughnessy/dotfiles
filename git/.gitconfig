@@ -1,0 +1,7 @@
+[user]
+	name = John Shaughnessy
+	email = john@johnshaughnessy.com
+	username = johnshaughnessy
+
+[init]
+	defaultBranch = main

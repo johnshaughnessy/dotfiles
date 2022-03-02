@@ -5,8 +5,8 @@
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
-;; (setq user-full-name "John Doe"
-;;       user-mail-address "john@doe.com")
+(setq user-full-name "John Shaughnessy"
+      user-mail-address "john@johnshaughnessy.com")
 
 ;; Doom exposes five (optional) variables for controlling fonts in Doom. Here
 ;; are the three important ones:
@@ -22,17 +22,55 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. These are the defaults.
+(setq doom-theme 'doom-molokai)
 ;; (setq doom-theme 'doom-one)
 ;; (setq doom-theme 'doom-peacock)
 ;; (setq doom-theme 'doom-oceanic-next)
 ;; (setq doom-theme 'doom-vibrant)
-(setq doom-theme 'doom-molokai)
 ;; (setq doom-theme 'doom-dracula)
-;;(load-theme 'doom-peacock t)
+;; (load-theme doom-theme)
 
 ;; If you intend to use org, it is recommended you change this!
 ;; (setq org-directory "~/org/")
-(setq org-directory "~/src/notes/")
+(setq org-directory (file-truename "~/org/"))
+;; (setq org-directory (file-name-directory buffer-file-name))
+(setq org-roam-directory (file-truename (concat org-directory "roam/")))
+(setq org-roam-templates-directory (file-truename (concat org-roam-directory "templates/")))
+(setq org-roam-nodes-directory (file-truename (concat org-roam-directory "nodes/")))
+(setq org-agenda-files (list org-directory org-roam-directory org-roam-nodes-directory))
+
+(defun file-to-string (file)
+  "File to string function"
+  (with-temp-buffer
+    (insert-file-contents file)
+    (buffer-string)))
+
+(defun template-todo ()
+  "hello"
+(let* ((keys "t")
+       (description "TODO")
+       (type 'plain)
+       (template "* ${title} %^G ")
+       (target-type 'file+head)
+       (target-location (concat org-roam-nodes-directory "%<%Y%m%d%H%M%S>-${slug}.org"))
+       (target-template (file-to-string (concat org-roam-templates-directory "todo.org")))
+       (target (list target-type
+                     target-location
+                     target-template))
+       (unnarrowed t)
+       (todo (list keys
+                   description
+                   type
+                   template
+                   :target target
+                   :unnarrowed unnarrowed))
+       )
+  todo
+  ))
+
+(setq org-roam-capture-templates
+      (list (template-todo)))
+
 
 ;; If you want to change the style of line numbers, change this to `relative' or
 ;; `nil' to disable it:
@@ -57,60 +95,10 @@
 (map! :leader
       (:prefix-map ("t" . "toggle")
         :desc "Toggle truncate lines"                     "t" #'toggle-truncate-lines))
-
 (setq truncate-lines nil)
 
 ;; https://magit.vc/manual/ghub/Storing-a-Token.html#Storing-a-Token
 (setq auth-sources '("~/.authinfo"))
-
-;; Handle transparency for this frame
-(defun set-alpha (alpha) (set-frame-parameter (selected-frame) 'alpha alpha))
-(defun transparency-off () (set-alpha 100))
-(defun transparency-on () (set-alpha (frame-parameter (selected-frame) 'alpha-when-transparent)))
-(defun transparency-very-on () (set-alpha (frame-parameter (selected-frame) 'alpha-when-very-transparent)))
-(defun is-very-transparent ()
-  (= (frame-parameter (selected-frame) 'alpha)
-     (frame-parameter (selected-frame) 'alpha-when-very-transparent)))
-(defun is-exactly-transparent ()
-  (= (frame-parameter (selected-frame) 'alpha)
-     (frame-parameter (selected-frame) 'alpha-when-transparent)))
-(defun toggle-transparency ()
-  (interactive)
-  (if (is-exactly-transparent) (transparency-off) (transparency-on)))
-(defun toggle-very-transparent ()
-  (interactive)
-  (if (is-very-transparent) (transparency-off) (transparency-very-on)))
-(defun set-transparency (value)
-   "Sets the transparency of the frame window. 0=transparent/100=opaque"
-   (interactive "nAlpha value for transparency 0=transparent/100=opaque:")
-     (if (not (= 100 value)) (set-frame-parameter (selected-frame) 'alpha-when-transparent value))
-     (set-alpha value))
-(defun set-very-transparency (value)
-   "Sets the transparency of the frame window. 0=transparent/100=opaque"
-   (interactive "nAlpha value for very-transparent 0=transparent/100=opaque:")
-   (if (not (= 100 value)) (set-frame-parameter (selected-frame) 'alpha-when-very-transparent value))
-   (set-alpha value))
-
-(map! :leader
-      (:prefix-map ("t" . "toggle")
-        :desc "Toggle transparency"                     "p" #'toggle-transparency))
-
-(map! :leader
-      (:prefix-map ("t" . "toggle")
-        :desc "Toggle very transparent"                     "o" #'toggle-very-transparent))
-
-(map! :leader
-      (:prefix-map ("t" . "toggle")
-        :desc "Set alpha of transparency"                     "P" #'set-transparency))
-
-(map! :leader
-      (:prefix-map ("t" . "toggle")
-        :desc "Set alpha of very transparent"                     "O" #'set-very-transparency))
-
-
-(set-frame-parameter (selected-frame) 'alpha-when-transparent 95)
-(set-frame-parameter (selected-frame) 'alpha-when-very-transparent 15)
-(set-alpha (frame-parameter (selected-frame) 'alpha-when-transparent))
 
 ;;(remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
 
@@ -132,24 +120,3 @@
 (use-package! prettier-js-mode
   :hook ((js2-mode tide-mode typescript-mode) . my/prettier-js-mode))
 
-;; (setq org-capture-templates
-;;       '(("f" "Feels" entry (file+headline "~/src/notes/feels/feels.org" "Feels")
-;;          "* %U %?\n %i \n")
-;;         ("4" "Stress Level 4" entry (file+headline "~/src/notes/feels/feels.org" "Stress")
-;;          "* %U Stress Level 4%?\n %i \n")
-;;         ("5" "Stress Level 5" entry (file+headline "~/src/notes/feels/feels.org" "Stress")
-;;          "* %U Stress Level 5" :immediate-finish 1)
-;;         ("6" "Stress Level 6" entry (file+headline "~/src/notes/feels/feels.org" "Stress")
-;;          "* %U Stress Level 6" :immediate-finish 1)
-;;         ("7" "Stress Level 7" entry (file+headline "~/src/notes/feels/feels.org" "Stress")
-;;          "* %U Stress Level 7" :immediate-finish 1)
-;;         ("8" "Stress Level 8" entry (file+headline "~/src/notes/feels/feels.org" "Stress")
-;;          "* %U Stress Level 8" :immediate-finish 1)))
-
-;; (setq org-capture-templates
-;;       '(("t" "TODO" entry (file+headline "~/src/notes/todo.org" "In Focus")
-;;          "** %? \n %i %U \n")))
-
-(setq org-capture-templates
-      '(("t" "TODO" entry (file+headline "~/src/notes/todo.org" "In Focus")
-         "** %? \n %i")))
