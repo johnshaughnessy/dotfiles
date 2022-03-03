@@ -5,4 +5,7 @@ alias info='info --vi-keys'
 
 set -o ignoreeof
 
+PATH=$PATH:$HOME/src/shell/bin:
+
 alias e="emacsclient -n"
+alias v="view_in_emacs"
