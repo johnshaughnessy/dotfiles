@@ -234,13 +234,13 @@ bindsym $mod+Shift+f exec "firefox"
 bindsym $mod+Shift+p exec "maim -o -s | tee /tmp/snip.png | xclip -selection clipboard -t image/png"
 bindsym $mod+p exec "maim -i $(xdotool getactivewindow) | tee /tmp/snip.png | xclip -selection clipboard -t image/png"
 
-# Need to test these
-bindcode 121 exec "~/src/shell/toggle-mute.sh"
-bindcode 122 exec "~/src/shell/change-volume.sh -10"
-bindcode 123 exec "~/src/shell/change-volume.sh 10"
-bindsym $mod+F1 exec "~/src/shell/toggle-mute.sh"
-bindsym $mod+F2 exec "~/src/shell/change-volume.sh -10"
-bindsym $mod+F3 exec "~/src/shell/change-volume.sh 10"
+bindsym $mod+F1 exec "toggle_mute"
+bindsym $mod+F2 exec "change_volume -10"
+bindsym $mod+F3 exec "change_volume 10"
+
+bindsym XF86AudioMute exec "toggle_mute"
+bindsym XF86AudioLowerVolume exec "change_volume -10"
+bindsym XF86AudioRaiseVolume exec "change_volume 10"
 
 for_window [urgent=latest] focus
 
