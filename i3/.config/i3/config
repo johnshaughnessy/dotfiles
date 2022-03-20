@@ -129,38 +129,6 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-
-bindsym $mod+i exec "termite -e ~/src/shell/forecast.sh --hold"
-bindsym $mod+Shift+i exec "~/src/shell/radar.sh"
-# bindsym $mod+n exec "alacritty -e ~/src/shell/toggle-pulsemixer.sh --role pulsemixer --class pulsemixer"
-bindsym $mod+Shift+f exec "firefox"
-bindsym $mod+u exec "/home/jomb/src/shell/add_to_path/do_op.sh"
-bindsym $mod+b exec "~/src/shell/toggle-bluetooth-speakers.sh"
-bindsym $mod+y exec "~/src/shell/invoke_clipboard_manager.sh"
-bindsym $mod+Shift+y exec "~/src/shell/toggle_clipboard_manager.sh"
-bindsym $alt+h exec "~/src/shell/key.sh h Left"
-bindsym $alt+j exec "~/src/shell/key.sh j Down"
-bindsym $alt+k exec "~/src/shell/key.sh k Up"
-bindsym $alt+l exec "~/src/shell/key.sh l Right"
-bindcode 121 exec "~/src/shell/toggle-mute.sh"
-bindcode 122 exec "~/src/shell/change-volume.sh -10"
-bindcode 123 exec "~/src/shell/change-volume.sh 10"
-bindsym $mod+F1 exec "~/src/shell/toggle-mute.sh"
-bindsym $mod+F2 exec "~/src/shell/change-volume.sh -10"
-bindsym $mod+F3 exec "~/src/shell/change-volume.sh 10"
-bindsym $mod+semicolon exec "~/src/shell/quick-emacs.sh"
-bindsym $mod+apostrophe exec --no-startup-id emacsclient -e "(+org-capture/open-frame nil)"
-
-bindsym $mod+r mode "resize"
-bindsym $mod+Shift+p exec "maim -o -s | tee /tmp/snip.png | xclip -selection clipboard -t image/png"
-bindsym $mod+p exec "maim -i $(xdotool getactivewindow) | tee /tmp/snip.png | xclip -selection clipboard -t image/png"
-
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -247,10 +215,44 @@ smart_gaps inverse_outer
 #     status_command SCRIPT_DIR=~/.config/i3blocks i3blocks
 # }
 
-bindsym $mod+o exec "~/src/shell/manage_monitors.sh"
-bindsym $mod+Shift+o exec "~/src/shell/manage_monitors.sh --enable-all"
-# bindsym $mod+Shift+y exec "~/src/shell/toggle-clipboard-manager.sh"
-# bindsym $mod+y exec "~/src/shell/invoke-clipboard-manager.sh"
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym $mod+r mode "resize"
+
+bindsym $mod+o exec "manage_monitors"
+bindsym $mod+Shift+o exec "manage_monitors --enable-all"
+bindsym $mod+y exec "invoke_clipboard_manager"
+bindsym $mod+Shift+y exec "toggle_clipboard_managerh"
 bindsym $mod+n exec alacritty -e zsh -c "pulsemixer"
+bindsym $mod+Shift+f exec "firefox"
+
+bindsym $mod+Shift+p exec "maim -o -s | tee /tmp/snip.png | xclip -selection clipboard -t image/png"
+bindsym $mod+p exec "maim -i $(xdotool getactivewindow) | tee /tmp/snip.png | xclip -selection clipboard -t image/png"
+
+# Need to test these
+bindcode 121 exec "~/src/shell/toggle-mute.sh"
+bindcode 122 exec "~/src/shell/change-volume.sh -10"
+bindcode 123 exec "~/src/shell/change-volume.sh 10"
+bindsym $mod+F1 exec "~/src/shell/toggle-mute.sh"
+bindsym $mod+F2 exec "~/src/shell/change-volume.sh -10"
+bindsym $mod+F3 exec "~/src/shell/change-volume.sh 10"
 
 for_window [urgent=latest] focus
+
+# Need to replace or remove
+# bindsym $mod+i exec "termite -e ~/src/shell/forecast.sh --hold"
+# bindsym $mod+Shift+i exec "~/src/shell/radar.sh"
+# bindsym $mod+n exec "alacritty -e ~/src/shell/toggle-pulsemixer.sh --role pulsemixer --class pulsemixer"
+# bindsym $mod+u exec "/home/jomb/src/shell/add_to_path/do_op.sh"
+# bindsym $mod+b exec "~/src/shell/toggle-bluetooth-speakers.sh"
+# bindsym $alt+h exec "~/src/shell/key.sh h Left"
+# bindsym $alt+j exec "~/src/shell/key.sh j Down"
+# bindsym $alt+k exec "~/src/shell/key.sh k Up"
+# bindsym $alt+l exec "~/src/shell/key.sh l Right"
+# bindsym $mod+semicolon exec "~/src/shell/quick-emacs.sh"
+# bindsym $mod+apostrophe exec --no-startup-id emacsclient -e "(+org-capture/open-frame nil)"

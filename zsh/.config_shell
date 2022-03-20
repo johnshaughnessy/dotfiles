@@ -1,11 +1,12 @@
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
+PATH=$PATH:$HOME/src/shell/bin:
 
 alias info='info --vi-keys'
 
+# If not running interactively, exit
+[[ $- != *i* ]] && return
+
+# Prevent accidentally closing shells when I press CTRL+d to move the screen down
 set -o ignoreeof
 
-PATH=$PATH:$HOME/src/shell/bin:
-
 alias e="emacsclient -n"
-alias v="~/src/shell/view_in_emacs.sh"
+alias v="view_in_emacs"
