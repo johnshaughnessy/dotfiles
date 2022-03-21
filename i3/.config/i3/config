@@ -227,7 +227,7 @@ bindsym $mod+r mode "resize"
 bindsym $mod+o exec "manage_monitors"
 bindsym $mod+Shift+o exec "manage_monitors --enable-all"
 bindsym $mod+y exec "invoke_clipboard_manager"
-bindsym $mod+Shift+y exec "toggle_clipboard_managerh"
+bindsym $mod+Shift+y exec "toggle_clipboard_manager"
 bindsym $mod+n exec alacritty -e zsh -c "pulsemixer"
 bindsym $mod+Shift+f exec "firefox"
 
