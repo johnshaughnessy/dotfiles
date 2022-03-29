@@ -47,4 +47,4 @@ source $ZSH/oh-my-zsh.sh
 source ~/.config_spaceship
 source ~/.config_vi_mode
 source ~/.config_shell
-source /usr/share/nvm/init-nvm.sh
+alias nvm="echo '[jfs] Initializing nvm...' && unalias nvm && source /usr/share/nvm/init-nvm.sh && nvm $@"
