@@ -241,6 +241,8 @@ bindsym $mod+F3 exec "change_volume 10"
 bindsym XF86AudioMute exec "toggle_mute"
 bindsym XF86AudioLowerVolume exec "change_volume -10"
 bindsym XF86AudioRaiseVolume exec "change_volume 10"
+bindsym XF86MonBrightnessUp exec "change_brightness 50"
+bindsym XF86MonBrightnessDown exec "change_brightness -50"
 
 for_window [urgent=latest] focus
 
