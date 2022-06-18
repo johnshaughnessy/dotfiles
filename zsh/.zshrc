@@ -48,7 +48,7 @@ source ~/.config_spaceship
 source ~/.config_vi_mode
 source ~/.config_path
 source ~/.config_shell
-source ~/.config_maws
-source /usr/share/nvm/init-nvm.sh
+# source ~/.config_maws
+# source /usr/share/nvm/init-nvm.sh
 # This was an attempt to initialize nvm in the background, but spaceship's node integration seems to run it over and over.
 # alias nvm="echo '[jfs] Initializing nvm...' && unalias nvm && source /usr/share/nvm/init-nvm.sh && nvm $@"
