@@ -6,7 +6,7 @@
 (setq template-note
   '("n" "note" plain
     (file (lambda () (expand-file-name (format-time-string "%Y-%m-%d-%H-%M-%S.org") src-me-notes)))
-    "* %? %^G"
+    "* %?  :note%^G"
     :unnarrowed t
     )
   )
@@ -17,7 +17,13 @@
                       ("project")
                       ("todo")
                       ("done")
-                      ("question")))
+                      ("question")
+                      ("goal")
+                      ("weekly")
+                      ("mind")
+                      ("body")
+                      ("soul")
+                      ))
 
 (setq org-agenda-prefix-format
   '((agenda . " %i %?-12t% s")
