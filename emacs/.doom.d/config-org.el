@@ -19,6 +19,7 @@
                       ("done")
                       ("question")
                       ("goal")
+                      ("failed")
                       ("weekly")
                       ("mind")
                       ("body")
