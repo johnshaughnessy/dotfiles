@@ -15,13 +15,11 @@
 (setq prefix-key-habit
       '("h" "habit"))
 
-(setq foo
-  (expand-file-name "org-mode-templates/habit-wake" src-me-notes))
 
 (setq template-habit-wake
   '("hw" "wake" plain
     (file (lambda () (expand-file-name (format-time-string "%Y-%m-%d-%H-%M-%S.org") src-me-notes)))
-    (file "~/src/me/org-mode-templates/habit-wake")
+    (file "~/src/me/templates/habit-wake")
     :unnarrowed t
     )
   )
