@@ -29,6 +29,7 @@
 (setq org-tag-alist '(("note")
                       ("project")
                       ("question")
+                      ("answer")
                       ("diary")
                       ("todo")
                       ("done")
