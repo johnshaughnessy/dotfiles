@@ -8,3 +8,6 @@ set -o ignoreeof
 
 alias e="emacsclient -n"
 alias v="view_in_emacs"
+
+alias here="pwd | xclip"
+alias there="cd $(xclip -out)"
