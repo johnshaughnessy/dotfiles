@@ -1,8 +1,5 @@
 PATH=$PATH:$HOME/src/shell/bin
 PATH=$PATH:$HOME/src/biome-sh/bio-1.6.474-x86_64-linux
-# TODO: Remove jomb and use $HOME
-# PATH=$PATH:/home/jomb/.local/bin
-# PATH=$PATH:/home/jomb/.local/bin
-PATH=$PATH:$HOME/.local/bin
 PATH=$PATH:$HOME/.local/bin
 PATH=$PATH:$HOME/.cargo/bin
+PATH=$PATH:$HOME/bin

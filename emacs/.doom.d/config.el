@@ -23,6 +23,54 @@
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. These are the defaults.
 (setq doom-theme 'doom-molokai)
+;; (setq doom-theme 'doom-one)
+;; (setq doom-theme 'doom-peacock)
+;; (setq doom-theme 'doom-oceanic-next)
+;; (setq doom-theme 'doom-vibrant)
+;; (setq doom-theme 'doom-dracula)
+;; (load-theme doom-theme)
+
+;; If you intend to use org, it is recommended you change this!
+;; (setq org-directory "~/org/")
+(setq org-directory (file-truename "~/src/notes/"))
+;; (setq org-directory (file-truename "~/org/"))
+;; ;; (setq org-directory (file-name-directory buffer-file-name))
+;; (setq org-roam-directory (file-truename (concat org-directory "roam/")))
+;; (setq org-roam-templates-directory (file-truename (concat org-roam-directory "templates/")))
+;; (setq org-roam-nodes-directory (file-truename (concat org-roam-directory "nodes/")))
+;; (setq org-agenda-files (list org-directory org-roam-directory org-roam-nodes-directory))
+
+;; (defun file-to-string (file)
+;;   "File to string function"
+;;   (with-temp-buffer
+;;     (insert-file-contents file)
+;;     (buffer-string)))
+
+;; (defun template-todo ()
+;;   "hello"
+;; (let* ((keys "t")
+;;        (description "TODO")
+;;        (type 'plain)
+;;        (template "* ${title} %^G ")
+;;        (target-type 'file+head)
+;;        (target-location (concat org-roam-nodes-directory "%<%Y%m%d%H%M%S>-${slug}.org"))
+;;        (target-template (file-to-string (concat org-roam-templates-directory "todo.org")))
+;;        (target (list target-type
+;;                      target-location
+;;                      target-template))
+;;        (unnarrowed t)
+;;        (todo (list keys
+;;                    description
+;;                    type
+;;                    template
+;;                    :target target
+;;                    :unnarrowed unnarrowed))
+;;        )
+;;   todo
+;;   ))
+
+;; (setq org-roam-capture-templates
+;;       (list (template-todo)))
 
 
 ;; If you want to change the style of line numbers, change this to `relative' or
@@ -74,4 +122,27 @@
   (prettier-js-mode))
 
 (use-package! prettier-js-mode
-  :hook ((js2-mode tide-mode typescript-mode) . my/prettier-js-mode))
+  :hook ((js2-mode tide-mode typescript-mode typescript-tsx-mode) . my/prettier-js-mode))
+
+
+;; (not js2-mode tide-mode typescript-mode emacs-lisp-mode sql-mode tex-mode latex-mode org-msg-edit-mode)
+
+(defun set-exec-path-from-shell-PATH ()
+  "Set up Emacs' `exec-path' and PATH environment variable to match that used by the user's shell.
+
+This is particularly useful under Mac OSX, where GUI apps are not started from a shell."
+  (interactive)
+  (let ((path-from-shell (replace-regexp-in-string "[ \t\n]*$" "" (shell-command-to-string "$SHELL --login -i -c 'echo $PATH'"))))
+    (setenv "PATH" path-from-shell)
+    (setq exec-path (split-string path-from-shell path-separator))))
+
+(set-exec-path-from-shell-PATH)
+
+;; Save buffers when Dom control-S's
+(map! "C-s" #'save-buffer)
+
+(load! "+lsp")
+
+(map! :map git-commit-mode-map
+      :desc "Co-Author Dom" :n "C-c C-a" (cmd! (git-commit-co-authored "Dominick D'Aniello" "netpro2k@gmail.com"))
+      :n "C-c C-S-a" 'git-commit-co-authored)
