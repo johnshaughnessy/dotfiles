@@ -224,6 +224,11 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 bindsym $mod+r mode "resize"
 
+# bindcode 133 exec "toggle_polybar on"
+# bindcode --release 133 exec "toggle_polybar off"
+# # 0x60 is backtick (`)
+# bindsym $mod+0x60 exec "toggle_polybar keep"
+
 bindsym $mod+o exec "manage_monitors"
 bindsym $mod+Shift+o exec "manage_monitors --enable-all"
 bindsym $mod+y exec "invoke_clipboard_manager"
