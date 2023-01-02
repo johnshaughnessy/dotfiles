@@ -52,3 +52,6 @@ source ~/.config_shell
 # source /usr/share/nvm/init-nvm.sh
 # This was an attempt to initialize nvm in the background, but spaceship's node integration seems to run it over and over.
 # alias nvm="echo '[jfs] Initializing nvm...' && unalias nvm && source /usr/share/nvm/init-nvm.sh && nvm $@"
+
+
+source "/usr/share/oh-my-zsh//custom/themes/spaceship.zsh-theme"
