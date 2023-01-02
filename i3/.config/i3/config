@@ -186,11 +186,12 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 #client.urgent           #2f343a #900000 #ffffff #900000   #900000
 #client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
-exec_always feh --bg-fill $HOME/media/image/wallpaper/Maple02.jpg
 
 # I foget what this does
 # popup_during_fullscreen smart
 
+# exec_always feh --bg-fill $HOME/media/image/cafe.jpg
+exec_always feh --bg-fill $HOME/.config/i3/images/wallhaven-85ox3j.png
 exec_always --no-startup-id $HOME/.config/polybar/polybar.sh &
 
 # i3-gaps
