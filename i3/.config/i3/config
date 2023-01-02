@@ -189,7 +189,7 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 exec_always feh --bg-fill $HOME/media/image/wallpaper/Maple02.jpg
 
 # I foget what this does
-popup_during_fullscreen smart
+# popup_during_fullscreen smart
 
 exec_always --no-startup-id $HOME/.config/polybar/polybar.sh &
 
