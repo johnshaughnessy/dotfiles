@@ -146,3 +146,9 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (map! :map git-commit-mode-map
       :desc "Co-Author Dom" :n "C-c C-a" (cmd! (git-commit-co-authored "Dominick D'Aniello" "netpro2k@gmail.com"))
       :n "C-c C-S-a" 'git-commit-co-authored)
+
+;; Enable exporting to github flavored markdown
+(eval-after-load "org"
+  '(require 'ox-gfm nil t))
+
+
