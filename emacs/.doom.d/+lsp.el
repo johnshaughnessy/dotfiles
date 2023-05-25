@@ -51,6 +51,13 @@
         ;; lsp-ui-sideline-show-code-actions nil
         )
 
+  (setq lsp-enable-symbol-highlighting t
+        lsp-ui-doc-enable t
+        lsp-lens-enable t
+        lsp-ui-sideline-enable t
+        lsp-modeline-code-actions-enable t
+        )
+
   ;; (setq lsp-ui-doc-enable t
   ;;       lsp-ui-doc-show-with-cursor t
   ;;       lsp-ui-doc-show-with-mouse t
