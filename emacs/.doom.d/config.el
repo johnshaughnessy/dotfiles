@@ -101,6 +101,14 @@
        :desc "Toggle truncate lines"                     "t" #'toggle-truncate-lines))
 (setq truncate-lines nil)
 
+(defun do-nothing (dir) ())
+(setq +workspaces-switch-project-function 'do-nothing)
+
+(after! :config
+  (add-to-list '+lookup-provider-url-alist '("Crates.io" "https://crates.io/search?q=%s") 'append)
+  (add-to-list '+lookup-provider-url-alist '("Docs.rs" "https://docs.rs/releases/search?query=%s") 'append)
+)
+
 ;; https://magit.vc/manual/ghub/Storing-a-Token.html#Storing-a-Token
 (setq auth-sources '("~/.authinfo"))
 
@@ -151,4 +159,5 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (eval-after-load "org"
   '(require 'ox-gfm nil t))
 
-
+;; Disable smart parens globally
+(smartparens-global-mode -1)
