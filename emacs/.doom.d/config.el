@@ -101,7 +101,7 @@
        :desc "Toggle truncate lines"                     "t" #'toggle-truncate-lines))
 (setq truncate-lines nil)
 
-(after! :config
+(after! config
   (add-to-list '+lookup-provider-url-alist '("Crates.io" "https://crates.io/search?q=%s") 'append)
   (add-to-list '+lookup-provider-url-alist '("Docs.rs" "https://docs.rs/releases/search?query=%s") 'append)
 )
