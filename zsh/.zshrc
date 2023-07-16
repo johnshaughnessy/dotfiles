@@ -57,3 +57,9 @@ source ~/.config_libtorch
 
 
 # source "/usr/share/oh-my-zsh//custom/themes/spaceship.zsh-theme"
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/john/Downloads/gcloud/google-cloud-sdk/path.zsh.inc' ]; then . '/home/john/Downloads/gcloud/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/john/Downloads/gcloud/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/john/Downloads/gcloud/google-cloud-sdk/completion.zsh.inc'; fi
