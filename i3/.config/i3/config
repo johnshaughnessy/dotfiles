@@ -191,7 +191,8 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 # popup_during_fullscreen smart
 
 # exec_always feh --bg-fill $HOME/media/image/cafe.jpg
-exec_always feh --bg-fill $HOME/.config/i3/images/wallhaven-85ox3j.png
+# exec_always feh --bg-fill $HOME/.config/i3/images/wallhaven-85ox3j.png
+exec_always feh --bg-max $HOME/.config/i3/images/ikigai.jpg
 exec_always --no-startup-id $HOME/.config/polybar/polybar.sh &
 
 # i3-gaps
@@ -237,8 +238,8 @@ bindsym $mod+Shift+y exec "toggle_clipboard_manager"
 bindsym $mod+n exec alacritty -e zsh -c "pulsemixer"
 bindsym $mod+Shift+f exec "firefox"
 
-bindsym $mod+Shift+p exec "maim -o -s | tee /tmp/snip.png | xclip -selection clipboard -t image/png"
-bindsym $mod+p exec "maim -i $(xdotool getactivewindow) | tee /tmp/snip_$(date '+%Y_%m_%d_%H_%M_%S').png | xclip -selection clipboard -t image/png"
+bindsym $mod+Shift+p exec "maim -o -s | tee /tmp/snip.png | tee /home/john/media/image/screenshots/snip_$(date '+%Y_%m_%d_%H_%M_%S').png | xclip -selection clipboard -t image/png"
+bindsym $mod+p exec "maim -i $(xdotool getactivewindow) | tee /home/john/media/image/screenshots/snip_$(date '+%Y_%m_%d_%H_%M_%S').png | xclip -selection clipboard -t image/png"
 
 bindsym $mod+F1 exec "toggle_mute"
 bindsym $mod+F2 exec "change_volume -10"
