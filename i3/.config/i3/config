@@ -191,8 +191,10 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 # popup_during_fullscreen smart
 
 # exec_always feh --bg-fill $HOME/media/image/cafe.jpg
+exec_always feh --bg-fill $HOME/.config/i3/images/wallhaven-85rw5o.jpg
 # exec_always feh --bg-fill $HOME/.config/i3/images/wallhaven-85ox3j.png
-exec_always feh --bg-max $HOME/.config/i3/images/ikigai.jpg
+# exec_always feh --bg-max $HOME/.config/i3/images/wallhaven-vqoo1p.jpg
+# exec_always feh --bg-max $HOME/.config/i3/images/ikigai.jpg
 exec_always --no-startup-id $HOME/.config/polybar/polybar.sh &
 
 # i3-gaps

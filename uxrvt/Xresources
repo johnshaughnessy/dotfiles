@@ -1,0 +1,5 @@
+URxvt.font: xft:Monospace:size=12
+URxvt.perl-ext-common: default,clipboard
+URxvt.keysym.Control-V: eval:paste_clipboard
+
+#include "/home/john/src/Xresources-themes/nord.Xresources"
