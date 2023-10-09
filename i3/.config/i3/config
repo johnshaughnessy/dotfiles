@@ -241,7 +241,7 @@ bindsym $mod+n exec alacritty -e zsh -c "pulsemixer"
 bindsym $mod+Shift+f exec "firefox"
 
 # bindsym $mod+Shift+p exec "maim -o -s | tee /tmp/snip.png | tee /home/john/media/image/screenshots/snip_$(date '+%Y_%m_%d_%H_%M_%S').png | xclip -selection clipboard -t image/png"
-bindsym $mod+Shift+p exec "maim -o -s | tee /tmp/snip.png | tee /home/john/media/image/screenshots/snip_$(date '+%Y_%m_%d_%H_%M_%S').png | tee $(./generate_next_filename.sh) | xclip -selection clipboard -t image/png"
+bindsym $mod+Shift+p exec "maim -o -s | tee /tmp/snip.png | tee /home/john/media/image/screenshots/snip_$(date '+%Y_%m_%d_%H_%M_%S').png | tee $(/home/john/.config/i3/generate_next_filename.sh) | xclip -selection clipboard -t image/png"
 
 bindsym $mod+p exec "maim -i $(xdotool getactivewindow) | tee /home/john/media/image/screenshots/snip_$(date '+%Y_%m_%d_%H_%M_%S').png | xclip -selection clipboard -t image/png"
 
