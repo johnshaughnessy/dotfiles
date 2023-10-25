@@ -1,0 +1,7 @@
+[slack]
+appname="Slack"
+skip_display=true
+
+[firefox]
+appname="Firefox"
+skip_display=true
