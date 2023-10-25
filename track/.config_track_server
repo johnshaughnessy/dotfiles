@@ -1,0 +1,25 @@
+
+# Custom completion for Track Server
+chpwd_track_server() {
+    if [[ $PWD == *"/home/john/src/track/server"* ]]; then
+        source /home/john/src/track/server/scripts/.cargo_custom_completion.zsh
+        functions[_cargo]=_cargo_custom
+    else
+        functions[_cargo]=$functions[_cargo_original]
+    fi
+}
+
+# Backup the original _cargo
+if [ -z $functions[_cargo_original] ]; then
+    functions[_cargo_original]=$functions[_cargo]
+fi
+
+# Add the custom chpwd function to the chpwd_functions array, which contains functions to be called on directory change
+if (( ${+functions[chpwd]} )); then
+    chpwd_functions+=(chpwd_track_server)
+else
+    function chpwd() {
+        chpwd_track_server
+    }
+fi
+
