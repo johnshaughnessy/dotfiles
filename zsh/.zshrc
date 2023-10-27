@@ -63,6 +63,3 @@ if [ -f '/home/john/Downloads/gcloud/google-cloud-sdk/path.zsh.inc' ]; then . '/
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/john/Downloads/gcloud/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/john/Downloads/gcloud/google-cloud-sdk/completion.zsh.inc'; fi
-
-# Custom completion for Track Server
-source ~/.config_track_server
