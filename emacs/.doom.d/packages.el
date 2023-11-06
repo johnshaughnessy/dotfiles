@@ -76,3 +76,8 @@
 
 ;; https://github.com/yoshiki/yaml-mode
 ;; (package! git-link :recipe (:host github :repo "yoshiki/yaml-mode"))
+
+;; https://github.com/zerolfx/copilot.el
+;; Friggen copilot, baby!!
+(package! copilot
+  :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
