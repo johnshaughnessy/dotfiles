@@ -60,10 +60,10 @@
 (package! git-link :recipe (:host github :repo "sshaw/git-link"))
 
 ;; https://github.com/louietan/anki-editor
-(package! git-link :recipe (:host github :repo "louietan/anki-editor"))
+(package! anki-editor :recipe (:host github :repo "louietan/anki-editor"))
 
 ;;https://github.com/larstvei/ox-gfm
-(package! git-link :recipe (:host github :repo "larstvei/ox-gfm"))
+(package! ox-gfm :recipe (:host github :repo "larstvei/ox-gfm"))
 
 ;; ;; https://github.com/antonj/Highlight-Indentation-for-Emacs
 ;; (package! git-link :recipe (:host github :repo "antonj/Highlight-Indentation-for-Emacs"))
