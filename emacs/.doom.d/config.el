@@ -168,3 +168,14 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
               ("TAB" . 'copilot-accept-completion)
               ("C-TAB" . 'copilot-accept-completion-by-word)
               ("C-<tab>" . 'copilot-accept-completion-by-word)))
+
+(setq +format-on-save-enabled-modes
+      '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
+            sql-mode         ; sqlformat is currently broken
+            tex-mode         ; latexindent is broken
+            latex-mode
+            web-mode))       ; exclude web-mode from auto formatting
+
+
+(with-eval-after-load 'lsp-mode
+  (add-to-list 'lsp-file-watch-ignored "[/\\\\]mozilla-unified\\'"))

@@ -81,3 +81,13 @@
 ;; Friggen copilot, baby!!
 (package! copilot
   :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
+
+;; 2023-12-07
+;;
+;; As of the latest version of typescript-language-server,
+;; the "--tsserver-path" parameter is deprecated. We unpin
+;; lsp-mode so that it no longer sends it.
+;;
+;; doom-emacs will _probably_ fix this, so we'll remove this
+;; from our config at some point in the future.
+(unpin! lsp-mode)
