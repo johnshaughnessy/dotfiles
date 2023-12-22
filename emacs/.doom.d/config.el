@@ -178,4 +178,4 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 
 (with-eval-after-load 'lsp-mode
-  (add-to-list 'lsp-file-watch-ignored "[/\\\\]mozilla-unified\\'"))
+  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]mozilla-unified\\'"))
