@@ -1,6 +1,6 @@
 # This will disable the top bars
 # for_window [class="^.*"] border pixel 1
-for_window [class="^.*"] border pixel 8
+for_window [class="^.*"] border pixel 2
 
 set $mod Mod4
 set $alt Mod1
@@ -190,17 +190,25 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 # I foget what this does
 # popup_during_fullscreen smart
 
-# exec_always feh --bg-fill $HOME/media/image/cafe.jpg
-exec_always feh --bg-fill $HOME/.config/i3/images/wallhaven-85rw5o.jpg
+# --bg-fill will fill the screen with the image. If the image is larger
+# than the screen, we can use --bg-max instead.
+exec_always feh --bg-max $HOME/media/image/wallpaper/builder_01.png
+# exec_always feh --bg-fill $HOME/.config/i3/images/wallhaven-85rw5o.jpg
 # exec_always feh --bg-fill $HOME/.config/i3/images/wallhaven-85ox3j.png
 # exec_always feh --bg-max $HOME/.config/i3/images/wallhaven-vqoo1p.jpg
 # exec_always feh --bg-max $HOME/.config/i3/images/ikigai.jpg
+# exec_always feh --bg-fill $HOME/media/image/cafe.jpg
 exec_always --no-startup-id $HOME/.config/polybar/polybar.sh &
 
 # i3-gaps
-gaps inner 8
+# gaps inner 8
+gaps inner 0
 smart_gaps on
 smart_gaps inverse_outer
+
+# We can change the color of the focused window:
+# The color is defined by a border, background and text color
+
 
 # I don't remember what smart_borders are
 # smart_borders on
@@ -270,3 +278,31 @@ for_window [urgent=latest] focus
 # bindsym $alt+l exec "~/src/shell/key.sh l Right"
 # bindsym $mod+semicolon exec "~/src/shell/quick-emacs.sh"
 # bindsym $mod+apostrophe exec --no-startup-id emacsclient -e "(+org-capture/open-frame nil)"
+
+
+
+# DEFAULT COLOR SCHEME:
+# base_light: #4c7899
+# base: #285577
+# accent: #2e9ef4
+# urgent: #900000
+# class                 border  backgr. text    indicator child_border
+client.focused          #4c7899 #285577 #ffffff #2e9ef4   #285577
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #900000 #ffffff #900000   #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.background       #ffffff
+
+# UPDATED WARM COLOR SCHEME:
+# base_light: #ffa636
+# base: #ff9636
+# accent: #ff5c4d
+# urgent: #f51663
+# class                 border  backgr. text    indicator child_border
+client.focused          #ffa636 #ff9636 #000000 #ff5c4d   #ff9636
+client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
+client.unfocused        #333333 #222222 #888888 #292d2e   #222222
+client.urgent           #2f343a #f51663 #ffffff #f51663   #f51663
+client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
+client.background       #ffffff

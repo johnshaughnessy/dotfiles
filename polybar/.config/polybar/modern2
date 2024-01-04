@@ -2,7 +2,9 @@
 ;background = ${xrdb:color0:#222}
 ;background = #222
 ; background-alt = #444
-background-alt = #2d5ba6
+;background-alt = #2d5ba6
+background-alt = #0696b7
+; background-alt = #ff9636
 ;foreground = ${xrdb:color7:#222}
 ; foreground = #dfdfdf
 foreground-alt = #555
@@ -10,8 +12,10 @@ foreground-alt = #555
 ; primary = #dcbfdc
 ; secondary = #e60053
 ; alert = #bd2c40
-primary = #d083b5
-secondary = #ddb1d3
+primary = #ff5c4d
+;primary = #d083b5
+;secondary = #ddb1d3
+secondary = #ff5c4d
 alert = #e60053
 
 [bar/top]
@@ -23,13 +27,15 @@ bottom = true
 
 ; background = #dcbfdc
 ; foreground = #eee
-background = #d0114178
+;background = #d0114178
+background = #2f343a
 foreground = #eddfed
 
 ; underline-size = 4
 ; underline-color = #eee
 underline-size = 6
-underline-color = #eddfed
+;underline-color = #eddfed
+;underline-color = #f51663
 
 spacing = 1
 padding-left = 0
@@ -309,7 +315,8 @@ interface = wlp2s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
+;format-connected-underline = #9f78e1
+format-connected-underline = #f51663
 ; label-connected = %essid%
 label-connected = %{A1:nm-connection-editor:}%essid%%{A}
 
