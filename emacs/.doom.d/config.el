@@ -196,22 +196,20 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 (setq password-cache-expiry 3600)
 
-(add-load-path! "/home/john/src/osai-pal/pal-emacs-plugin")
-(use-package pal
-  :demand t
-  )
 
+;; --- PAL ---
+;; https://github.com/johnshaughnessy/osai-pal
+
+(add-load-path! "/home/john/src/osai-pal/pal-emacs-plugin")
+(use-package pal :demand t)
 (after! ivy (ivy-add-actions
              'ivy-find-file
              '(("s" 'pal-ivy-view-summary-action "View Summary"))))
-
-
 (defun my/pal-status-wrapper ()
   (interactive)
   (if (featurep 'pal)
       (pal-status)
     (message "pal is not loaded")))
-
 (map! :leader
       :desc "Run pal-status"
       "l l" #'my/pal-status-wrapper)
