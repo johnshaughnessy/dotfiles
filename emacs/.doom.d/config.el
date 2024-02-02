@@ -17,7 +17,7 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "monospace" :size 32))
+(setq doom-font (font-spec :family "monospace" :size 28))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -104,7 +104,7 @@
 (after! config
   (add-to-list '+lookup-provider-url-alist '("Crates.io" "https://crates.io/search?q=%s") 'append)
   (add-to-list '+lookup-provider-url-alist '("Docs.rs" "https://docs.rs/releases/search?query=%s") 'append)
-)
+  )
 
 ;; https://magit.vc/manual/ghub/Storing-a-Token.html#Storing-a-Token
 (setq auth-sources '("~/.authinfo"))
@@ -159,23 +159,59 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 ;; Disable smart parens globally
 (smartparens-global-mode -1)
 
-
-;; accept completion from copilot and fallback to company
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
   :bind (:map copilot-completion-map
-              ("<tab>" . 'copilot-accept-completion)
-              ("TAB" . 'copilot-accept-completion)
+              ("<tab>" . 'my/copilot-tab-or-indent)
+              ("TAB" . 'my/copilot-tab-or-indent)
               ("C-TAB" . 'copilot-accept-completion-by-word)
               ("C-<tab>" . 'copilot-accept-completion-by-word)))
 
+(defun my/copilot-tab-or-indent ()
+  "Use `copilot-accept-completion` if available, else `indent-for-tab-command`."
+  (interactive)
+  (unless (and (fboundp 'copilot-accept-completion)
+               (copilot-accept-completion))
+    (indent-for-tab-command)))
+
+(global-set-key (kbd "TAB") 'my/copilot-tab-or-indent)
+
+;; Bind <backtab> to `format-all-buffer' after loading `format-all'
+(after! format-all
+  (message "Setting <backtab> to `format-all-buffer'")
+  (global-set-key (kbd "<backtab>") 'format-all-buffer))
+
 (setq +format-on-save-enabled-modes
       '(not emacs-lisp-mode  ; elisp's mechanisms are good enough
-            sql-mode         ; sqlformat is currently broken
-            tex-mode         ; latexindent is broken
-            latex-mode
-            web-mode))       ; exclude web-mode from auto formatting
+        sql-mode         ; sqlformat is currently broken
+        tex-mode         ; latexindent is broken
+        latex-mode
+        web-mode
+        c++-mode
+        ))       ; exclude web-mode from auto formatting
 
 
 (with-eval-after-load 'lsp-mode
   (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]mozilla-unified\\'"))
+
+(setq password-cache-expiry 3600)
+
+(add-load-path! "/home/john/src/osai-pal/pal-emacs-plugin")
+(use-package pal
+  :demand t
+  )
+
+(after! ivy (ivy-add-actions
+             'ivy-find-file
+             '(("s" 'pal-ivy-view-summary-action "View Summary"))))
+
+
+(defun my/pal-status-wrapper ()
+  (interactive)
+  (if (featurep 'pal)
+      (pal-status)
+    (message "pal is not loaded")))
+
+(map! :leader
+      :desc "Run pal-status"
+      "l l" #'my/pal-status-wrapper)

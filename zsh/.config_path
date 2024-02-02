@@ -3,3 +3,4 @@ PATH=$PATH:$HOME/src/biome-sh/bio-1.6.474-x86_64-linux
 PATH=$PATH:$HOME/.local/bin
 PATH=$PATH:$HOME/.cargo/bin
 PATH=$PATH:$HOME/bin
+PATH=$PATH:/opt/rocm/bin
