@@ -93,9 +93,6 @@
 ;; You can also try 'gd' (or 'C-c g d') to jump to their definition and see how
 ;; they are implemented.
 
-;; Configure org-mode stuff
-(after! org (load! "./config-org"))
-
 (map! :leader
       (:prefix-map ("t" . "toggle")
        :desc "Toggle truncate lines"                     "t" #'toggle-truncate-lines))
@@ -165,7 +162,8 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
               ("<tab>" . 'my/copilot-tab-or-indent)
               ("TAB" . 'my/copilot-tab-or-indent)
               ("C-TAB" . 'copilot-accept-completion-by-word)
-              ("C-<tab>" . 'copilot-accept-completion-by-word)))
+              ("C-<tab>" . 'copilot-accept-completion-by-word))
+  :config (setq copilot-indent-offset-warning-disable t))
 
 (defun my/copilot-tab-or-indent ()
   "Use `copilot-accept-completion` if available, else `indent-for-tab-command`."
@@ -213,3 +211,5 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (map! :leader
       :desc "Run pal-status"
       "l l" #'my/pal-status-wrapper)
+
+;;
