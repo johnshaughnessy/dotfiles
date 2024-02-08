@@ -148,7 +148,7 @@
         ;;+pandoc          ; export-with-pandoc support
         ;;+pomodoro        ; be fruitful with the tomato technique
         +present         ; using org-mode for presentations
-        ;; +roam2
+        +roam2
 	)
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
