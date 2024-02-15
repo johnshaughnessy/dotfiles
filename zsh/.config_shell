@@ -7,9 +7,12 @@ alias info='info --vi-keys'
 set -o ignoreeof
 
 alias e="emacsclient -n"
+alias et="emacsclient -t"
 alias v="view_in_emacs"
 alias here="pwd | xclip"
 # alias dc="docker compose"
 alias mc="mutagen-compose"
 alias msh="mosh --server='/home/john/.nix-profile/bin/mosh-server'"
 alias k="kubectl"
+
+export EDITOR='emacsclient -t'

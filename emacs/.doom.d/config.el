@@ -212,4 +212,15 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
       :desc "Run pal-status"
       "l l" #'my/pal-status-wrapper)
 
-;;
+;; Editing from the command line
+(defun my-edit-and-execute-command-hook ()
+  "Check if the current buffer is a temporary file and switch to insert mode."
+  (when (and (stringp buffer-file-name)
+             ;; You might need to adjust the condition below according to how your temporary buffers are named or located
+             (string-match "/tmp/zsh.*\\.zsh$" buffer-file-name))
+    (evil-insert 0)
+    (local-set-key (kbd "C-c C-c") 'server-edit)
+    )
+  )
+
+(add-hook 'find-file-hook 'my-edit-and-execute-command-hook)
