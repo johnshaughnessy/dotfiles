@@ -32,7 +32,8 @@
 
 ;; If you intend to use org, it is recommended you change this!
 ;; (setq org-directory "~/org/")
-(setq org-directory (file-truename "~/src/notes/"))
+;;(setq org-directory (file-truename "~/src/notes/"))
+(setq org-directory (file-truename "~/src/acorn/roam"))
 ;; (setq org-directory (file-truename "~/org/"))
 ;; ;; (setq org-directory (file-name-directory buffer-file-name))
 ;; (setq org-roam-directory (file-truename (concat org-directory "roam/")))
@@ -222,5 +223,26 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     (local-set-key (kbd "C-c C-c") 'server-edit)
     )
   )
+;;
+;; Org roam
 
 (add-hook 'find-file-hook 'my-edit-and-execute-command-hook)
+
+(use-package org-roam
+  :ensure t
+  :custom
+                                        ;(org-roam-directory (file-truename "~/src/notes/roam/"))
+  (org-roam-directory (file-truename "~/src/japan-pal/roam/"))
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture)
+         ;; Dailies
+         ("C-c n j" . org-roam-dailies-capture-today))
+  :config
+  ;; If you're using a vertical completion framework, you might want a more informative completion interface
+  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+  (org-roam-db-autosync-mode)
+  ;; If using org-roam-protocol
+  (require 'org-roam-protocol))
