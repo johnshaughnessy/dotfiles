@@ -33,7 +33,7 @@
 ;; If you intend to use org, it is recommended you change this!
 ;; (setq org-directory "~/org/")
 ;;(setq org-directory (file-truename "~/src/notes/"))
-(setq org-directory (file-truename "~/src/acorn/roam"))
+(setq org-directory (file-truename "~/src/acorn/records/roam"))
 ;; (setq org-directory (file-truename "~/org/"))
 ;; ;; (setq org-directory (file-name-directory buffer-file-name))
 ;; (setq org-roam-directory (file-truename (concat org-directory "roam/")))
@@ -127,6 +127,8 @@
 (use-package! prettier-js-mode
   :hook ((js2-mode tide-mode typescript-mode typescript-tsx-mode) . my/prettier-js-mode))
 
+(setq lsp-typescript-tsdk "/src/memory-cache-browser-client/client2/node_modules/typescript/lib")
+
 
 ;; (not js2-mode tide-mode typescript-mode emacs-lisp-mode sql-mode tex-mode latex-mode org-msg-edit-mode)
 
@@ -157,6 +159,9 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 ;; Disable smart parens globally
 (smartparens-global-mode -1)
 
+;; Set copilot-max-char to -1 AFTER the package is loaded
+;; We also need to set copilot-indent-offset-warning-disable to t
+;; We can do that inside of use-package! by using the :config keyword
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
   :bind (:map copilot-completion-map
@@ -164,7 +169,12 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
               ("TAB" . 'my/copilot-tab-or-indent)
               ("C-TAB" . 'copilot-accept-completion-by-word)
               ("C-<tab>" . 'copilot-accept-completion-by-word))
-  :config (setq copilot-indent-offset-warning-disable t))
+  :config
+  (progn
+    (setq copilot-max-char -1)
+    (setq copilot-indent-offset-warning-disable t)
+    )
+  )
 
 (defun my/copilot-tab-or-indent ()
   "Use `copilot-accept-completion` if available, else `indent-for-tab-command`."
@@ -174,6 +184,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     (indent-for-tab-command)))
 
 (global-set-key (kbd "TAB") 'my/copilot-tab-or-indent)
+
 
 ;; Bind <backtab> to `format-all-buffer' after loading `format-all'
 (after! format-all
@@ -196,7 +207,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (setq password-cache-expiry 3600)
 
 
-;; --- PAL ---
+;; --- OSAI PAL ---
 ;; https://github.com/johnshaughnessy/osai-pal
 
 (add-load-path! "/home/john/src/osai-pal/pal-emacs-plugin")
@@ -232,7 +243,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
   :ensure t
   :custom
                                         ;(org-roam-directory (file-truename "~/src/notes/roam/"))
-  (org-roam-directory (file-truename "~/src/japan-pal/roam/"))
+  (org-roam-directory (file-truename "~/src/acorn/records/roam/"))
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
          ("C-c n g" . org-roam-graph)
@@ -246,3 +257,11 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
   (org-roam-db-autosync-mode)
   ;; If using org-roam-protocol
   (require 'org-roam-protocol))
+
+
+(add-load-path! "/home/john/src/acorn/pal-emacs/")
+(use-package acorn-pal-emacs
+  :demand t
+  :config
+  (setq acorn-pal--base-url "http://localhost:4444")
+  )

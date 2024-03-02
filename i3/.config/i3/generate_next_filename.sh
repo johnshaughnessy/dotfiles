@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Directory to scan
-dir="/home/john/media/image/scratch/"
-#dir="/home/john/src/blog/blog/static/image/osai-kube/"
+dir="/home/john/media/image/screenshots/"
+dir="/home/john/src/blog/blog/static/image/acorn_pal_emacs/"
 
 # Get the highest numbered file, and ensure the number is treated as decimal by stripping leading zeros
 highest_number=$(find "$dir" -type f -name 'screenshot_*.png' | grep -oP '(?<=screenshot_)\d+(?=.png)' | sort -n | tail -1 | sed 's/^0*//')
