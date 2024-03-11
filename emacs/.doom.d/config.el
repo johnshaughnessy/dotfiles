@@ -113,21 +113,21 @@
 (global-so-long-mode 1)
 
 ;; Use local version of prettier
-(defun my/prettier-js-mode ()
-  (let* ((root (locate-dominating-file
-                (or (buffer-file-name) default-directory)
-                "node_modules"))
-         (prettier (and root
-                        (expand-file-name "node_modules/.bin/prettier"
-                                          root))))
-    (when (and prettier (file-executable-p prettier))
-      (setq-local prettier-js-command prettier)))
-  (prettier-js-mode))
+;; (defun my/prettier-js-mode ()
+;;   (let* ((root (locate-dominating-file
+;;                 (or (buffer-file-name) default-directory)
+;;                 "node_modules"))
+;;          (prettier (and root
+;;                         (expand-file-name "node_modules/.bin/prettier"
+;;                                           root))))
+;;     (when (and prettier (file-executable-p prettier))
+;;       (setq-local prettier-js-command prettier)))
+;;   (prettier-js-mode))
 
-(use-package! prettier-js-mode
-  :hook ((js2-mode tide-mode typescript-mode typescript-tsx-mode) . my/prettier-js-mode))
+;; (use-package! prettier-js-mode
+;;   :hook ((js2-mode tide-mode typescript-mode typescript-tsx-mode) . my/prettier-js-mode))
 
-(setq lsp-typescript-tsdk "/src/memory-cache-browser-client/client2/node_modules/typescript/lib")
+;; (setq lsp-typescript-tsdk "/src/memory-cache-browser-client/client2/node_modules/typescript/lib")
 
 
 ;; (not js2-mode tide-mode typescript-mode emacs-lisp-mode sql-mode tex-mode latex-mode org-msg-edit-mode)
@@ -176,6 +176,10 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     )
   )
 
+(after! emmet-mode
+  (map! :map emmet-mode-keymap
+        "<tab>" nil))
+
 (defun my/copilot-tab-or-indent ()
   "Use `copilot-accept-completion` if available, else `indent-for-tab-command`."
   (interactive)
@@ -200,9 +204,6 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
         c++-mode
         ))       ; exclude web-mode from auto formatting
 
-
-(with-eval-after-load 'lsp-mode
-  (add-to-list 'lsp-file-watch-ignored-directories "[/\\\\]mozilla-unified\\'"))
 
 (setq password-cache-expiry 3600)
 
