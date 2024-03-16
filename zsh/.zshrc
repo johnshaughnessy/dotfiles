@@ -49,7 +49,7 @@ source ~/.config_vi_mode
 source ~/.config_path
 source ~/.config_shell
 source ~/.config_conda
-source ~/post_ssh_hooks.sh
+source ~/.post_ssh_hooks.sh
 # source ~/.config_libtorch
 # source ~/.config_maws
 # source /usr/share/nvm/init-nvm.sh
