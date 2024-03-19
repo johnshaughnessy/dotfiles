@@ -266,3 +266,18 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
   :config
   (setq acorn-pal--base-url "http://localhost:4444")
   )
+
+;; emacs-mozc
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/emacs-mozc")
+(require 'mozc)
+(setq default-input-method "japanese-mozc")
+(prefer-coding-system 'utf-8)
+
+(defun set-mozc-mode-enabled (enabled)
+  "Enable or disable mozc-mode"
+  (if enabled
+      (mozc-mode 1)
+    (mozc-mode -1)))
+
+(map! "M-e" (cmd! (set-mozc-mode-enabled nil)))
+(map! "M-w" (cmd! (set-mozc-mode-enabled t)))
