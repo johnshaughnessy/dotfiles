@@ -162,13 +162,13 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 ;; Set copilot-max-char to -1 AFTER the package is loaded
 ;; We also need to set copilot-indent-offset-warning-disable to t
 ;; We can do that inside of use-package! by using the :config keyword
+;; Bind it to alt-tab too
 (use-package! copilot
   :hook (prog-mode . copilot-mode)
   :bind (:map copilot-completion-map
-              ("<tab>" . 'my/copilot-tab-or-indent)
-              ("TAB" . 'my/copilot-tab-or-indent)
               ("C-TAB" . 'copilot-accept-completion-by-word)
-              ("C-<tab>" . 'copilot-accept-completion-by-word))
+              ("C-<tab>" . 'copilot-accept-completion-by-word)
+              ("s-<tab>" . 'my/copilot-tab-or-indent))
   :config
   (progn
     (setq copilot-max-char -1)
@@ -176,9 +176,12 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     )
   )
 
+
 (after! emmet-mode
   (map! :map emmet-mode-keymap
-        "<tab>" nil))
+        "<tab>" nil
+        "S-<tab>" nil
+        ))
 
 (defun my/copilot-tab-or-indent ()
   "Use `copilot-accept-completion` if available, else `indent-for-tab-command`."
@@ -187,7 +190,9 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
                (copilot-accept-completion))
     (indent-for-tab-command)))
 
-(global-set-key (kbd "TAB") 'my/copilot-tab-or-indent)
+
+;; Bind s-<tab> to 'my/copilot-tab-or-indent
+(global-set-key (kbd "s-<tab>") 'my/copilot-tab-or-indent)
 
 
 ;; Bind <backtab> to `format-all-buffer' after loading `format-all'
@@ -281,3 +286,24 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 (map! "M-e" (cmd! (set-mozc-mode-enabled nil)))
 (map! "M-w" (cmd! (set-mozc-mode-enabled t)))
+
+
+;; Remove the default keybinding for org-return
+;; evil-org-mode-map <normal-state> <return>
+;; evil-org-mode-map <normal-state> RET
+
+(after! org-mode
+  (map! :map org-mode-map
+        :n "RET" nil
+        :n "<return>" nil
+        :i "RET" nil
+        :i "<return>" nil
+        ))
+
+(after! evil-org
+  (map! :map evil-org-mode-map
+        :n "RET" nil
+        :n "<return>" nil
+        :i "RET" nil
+        :i "<return>" nil
+        ))

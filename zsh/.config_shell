@@ -14,5 +14,6 @@ alias here="pwd | xclip"
 alias mc="mutagen-compose"
 alias msh="mosh --server='/home/john/.nix-profile/bin/mosh-server'"
 alias k="kubectl"
+alias rgf="rg --files"
 
 export EDITOR='emacsclient -t'
