@@ -18,3 +18,18 @@ shell:
   program: /bin/zsh
   args:
     - --login
+
+font:
+  normal:
+    family: PragmataPro
+    style: Regular
+  bold:
+    family: PragmataPro
+    style: Bold
+  italic:
+    family: PragmataPro
+    style: Italic
+  bold_italic:
+    family: PragmataPro
+    style: Bold Italic
+  size: 12.0
