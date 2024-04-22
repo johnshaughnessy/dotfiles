@@ -220,19 +220,19 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 ;; --- OSAI PAL ---
 ;; https://github.com/johnshaughnessy/osai-pal
 
-(add-load-path! "/home/john/src/osai-pal/pal-emacs-plugin")
-(use-package pal :demand t)
-(after! ivy (ivy-add-actions
-             'ivy-find-file
-             '(("s" 'pal-ivy-view-summary-action "View Summary"))))
-(defun my/pal-status-wrapper ()
-  (interactive)
-  (if (featurep 'pal)
-      (pal-status)
-    (message "pal is not loaded")))
-(map! :leader
-      :desc "Run pal-status"
-      "l l" #'my/pal-status-wrapper)
+;; (add-load-path! "/home/john/src/osai-pal/pal-emacs-plugin")
+;; (use-package pal :demand t)
+;; (after! ivy (ivy-add-actions
+;;              'ivy-find-file
+;;              '(("s" 'pal-ivy-view-summary-action "View Summary"))))
+;; (defun my/pal-status-wrapper ()
+;;   (interactive)
+;;   (if (featurep 'pal)
+;;       (pal-status)
+;;     (message "pal is not loaded")))
+;; (map! :leader
+;;       :desc "Run pal-status"
+;;       "l l" #'my/pal-status-wrapper)
 
 ;; Editing from the command line
 (defun my-edit-and-execute-command-hook ()
@@ -269,12 +269,12 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
   (require 'org-roam-protocol))
 
 
-(add-load-path! "/home/john/src/acorn/pal-emacs/")
-(use-package acorn-pal-emacs
-  :demand t
-  :config
-  (setq acorn-pal--base-url "http://localhost:4444")
-  )
+;; (add-load-path! "/home/john/src/acorn/pal-emacs/")
+;; (use-package acorn-pal-emacs
+;;   :demand t
+;;   :config
+;;   (setq acorn-pal--base-url "http://localhost:4444")
+;;   )
 
 ;; emacs-mozc
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/emacs-mozc")
