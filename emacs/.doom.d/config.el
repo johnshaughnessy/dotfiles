@@ -111,7 +111,44 @@
 ;; https://magit.vc/manual/ghub/Storing-a-Token.html#Storing-a-Token
 (setq auth-sources '("~/.authinfo"))
 
-;;(remove-hook 'doom-first-buffer-hook #'smartparens-global-mode)
+;; Disable smartparens globally
+(smartparens-global-mode -1)
+
+;; Ensure smartparens is disabled in specific modes
+(remove-hook 'prog-mode-hook #'smartparens-mode)
+(remove-hook 'typescript-tsx-mode-hook #'smartparens-mode)
+
+;; Remove specific smartparens hooks
+(remove-hook 'post-self-insert-hook #'sp--post-self-insert-hook-handler)
+(remove-hook 'pre-command-hook #'sp--save-pre-command-state)
+(remove-hook 'post-command-hook #'sp--post-command-hook-handler)
+
+(setq post-self-insert-hook nil)
+
+(after! smartparens
+  (progn
+    (smartparens-global-mode -1)
+    (smartparens-mode -1)
+    (turn-off-smartparens-mode)
+    (turn-off-smartparens-strict-mode)
+    ;; Ensure smartparens is disabled in specific modes
+    (remove-hook 'prog-mode-hook #'smartparens-mode)
+    (remove-hook 'typescript-tsx-mode-hook #'smartparens-mode)
+
+    ;; Remove specific smartparens hooks
+    (remove-hook 'post-self-insert-hook #'sp--post-self-insert-hook-handler)
+    (remove-hook 'pre-command-hook #'sp--save-pre-command-state)
+    (remove-hook 'post-command-hook #'sp--post-command-hook-handler)
+
+    (setq post-self-insert-hook nil)
+    ))
+
+;; Add a hook that runs whenever we open ANY buffer to turn-off-smartparens-mode:
+(add-hook 'find-file-hook 'turn-off-smartparens-mode)
+
+;; Also, call it when we open a new buffer
+(add-hook 'after-change-major-mode-hook 'turn-off-smartparens-mode)
+
 
 ;; Avoid performance issues in files with very long lines.
 (global-so-long-mode 1)
