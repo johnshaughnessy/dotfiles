@@ -5,3 +5,4 @@ PATH=$PATH:$HOME/.cargo/bin
 PATH=$PATH:$HOME/bin
 PATH=$PATH:/opt/rocm/bin
 PATH=$PATH:$HOME/miniconda3/bin
+PATH=$PATH:$HOME/Downloads/stripe/
