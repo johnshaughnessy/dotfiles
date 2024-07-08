@@ -93,7 +93,7 @@
        ;;gist              ; interacting with github gists
        (lookup           ; helps you navigate your code and documentation
         +docsets)        ; ...or in Dash docsets locally
-       ;;(lsp +peek)
+       (lsp +peek)
        ;;macos             ; MacOS-specific commands
        magit             ; a git porcelain for Emacs
        make              ; run make tasks from Emacs
@@ -102,6 +102,7 @@
        ;;prodigy           ; FIXME managing external services & code builders
        rgb               ; creating color strings
        terraform         ; infrastructure as code
+       treesitter
        ;;tmux              ; an API for interacting with tmux
        ;;upload            ; map local to remote projects via ssh/ftp
 
