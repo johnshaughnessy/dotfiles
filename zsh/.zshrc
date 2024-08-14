@@ -67,3 +67,9 @@ if [ -f '/home/john/Downloads/gcloud/google-cloud-sdk/path.zsh.inc' ]; then . '/
 if [ -f '/home/john/Downloads/gcloud/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/john/Downloads/gcloud/google-cloud-sdk/completion.zsh.inc'; fi
 
 if [ -f '/home/john/.helm/completion.zsh.inc' ]; then . ~/.helm/completion.zsh.inc; fi
+
+# NVM
+[ -z "$NVM_DIR" ] && export NVM_DIR="$HOME/.nvm"
+source /usr/share/nvm/nvm.sh
+source /usr/share/nvm/bash_completion
+source /usr/share/nvm/install-nvm-exec
