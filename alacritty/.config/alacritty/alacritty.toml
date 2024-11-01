@@ -17,6 +17,8 @@ style = "Italic"
 family = "PragmataPro"
 style = "Regular"
 
-[shell]
+[terminal]
+
+[terminal.shell]
 args = ["--login"]
 program = "/bin/zsh"
