@@ -1,0 +1,5 @@
+# Ignore binary files in ibus/.config/mozc/
+ibus/.config/mozc/.history.db
+ibus/.config/mozc/.renderer.:0.ipc
+ibus/.config/mozc/.session.ipc
+ibus/.config/mozc/segment.db
