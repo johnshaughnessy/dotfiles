@@ -50,6 +50,7 @@ source ~/.config_path
 source ~/.config_shell
 source ~/.config_conda
 source ~/.config_ibus
+source ~/.config_asdf
 source ~/.post_ssh_hooks.sh
 # source ~/.config_libtorch
 # source ~/.config_maws
