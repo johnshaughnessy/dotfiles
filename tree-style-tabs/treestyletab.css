@@ -1,3 +1,5 @@
+/* Copy/paste this into the tree style tab settings page */
+
 /* Hide border on tab bar, force its state to 'scroll', adjust margin-left for width of scrollbar.
 #tabbar {
     border: 0;
@@ -92,22 +94,21 @@
 }
 
 .tab.active {
-    background-color: #45A1FF;
+    background-color: #45a1ff;
 }
 
 .tab.active:hover {
-    background-color: #45A1FF !important;
+    background-color: #45a1ff !important;
 }
-
 
 /* Adjust style for tab that has sound playing. */
 .tab.sound-playing .favicon::after {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 50%;
     border-radius: 50%;
-    background: #FFFFFF;
+    background: #ffffff;
     animation: pulse 2s ease-out 0s infinite;
     z-index: -1;
     opacity: 0;
