@@ -1,0 +1,17 @@
+" Cycle current line position: top, middle, bottom
+nmap <C-l> :call CycleLinePosition()<CR>
+
+function! CycleLinePosition()
+  if !exists("g:line_position")
+    let g:line_position = 0
+  endif
+
+  let g:line_position = (g:line_position + 1) % 3
+  if g:line_position == 0
+    normal! zz
+  elseif g:line_position == 1
+    normal! zt
+  else
+    normal! zb
+  endif
+endfunction

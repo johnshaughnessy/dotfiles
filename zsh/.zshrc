@@ -76,3 +76,9 @@ if [ -f /usr/share/nvm/nvm.sh ]; then
   source /usr/share/nvm/bash_completion
   source /usr/share/nvm/install-nvm-exec
 fi
+
+autoload -Uz compinit
+compinit
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/home/john/.cache/lm-studio/bin"

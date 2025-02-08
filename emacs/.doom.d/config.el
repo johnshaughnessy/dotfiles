@@ -18,7 +18,7 @@
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 28))
-(setq doom-font (font-spec :family "PragmataPro" :size 18 :weight 'regular))
+(setq doom-font (font-spec :family "PragmataPro" :size 28 :weight 'regular))
 (setq doom-variable-pitch-font (font-spec :family "PragmataPro" :size 18))
 
 
@@ -296,7 +296,8 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
   :ensure t
   :custom
                                         ;(org-roam-directory (file-truename "~/src/notes/roam/"))
-  (org-roam-directory (file-truename "~/src/acorn/records/roam/"))
+                                        ;(org-roam-directory (file-truename "~/src/acorn/records/roam/"))
+  (org-roam-directory (file-truename "~/src/org-roam/"))
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n f" . org-roam-node-find)
          ("C-c n g" . org-roam-graph)

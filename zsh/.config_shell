@@ -17,3 +17,4 @@ alias k="kubectl"
 alias rgf="rg --files"
 
 export EDITOR='emacsclient -t'
+export CRYPTOGRAPHY_OPENSSL_NO_LEGACY=1 # Tell conda to use the new openssl
