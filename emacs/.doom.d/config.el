@@ -18,8 +18,8 @@
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
 ;; (setq doom-font (font-spec :family "monospace" :size 28))
-(setq doom-font (font-spec :family "PragmataPro" :size 28 :weight 'regular))
-(setq doom-variable-pitch-font (font-spec :family "PragmataPro" :size 18))
+(setq doom-font (font-spec :family "PragmataPro" :size 24 :weight 'regular))
+(setq doom-variable-pitch-font (font-spec :family "PragmataPro" :size 16))
 
 
 
