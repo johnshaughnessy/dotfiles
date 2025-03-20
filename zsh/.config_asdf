@@ -1,2 +1,4 @@
 # . /opt/asdf-vm/asdf.sh
-. /home/john/.asdf/asdf.sh
+# . /home/john/.asdf/asdf.sh
+export PATH="/home/john/.asdf/shims:$PATH"
+asdf reshim
