@@ -695,109 +695,11 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
     (browse-url (concat "https://jisho.org/search/" search-term))))
 
 
-;; ======================================================================
-;; Dired Smart Preview + MPV Play – GUARANTEED ONE PREVIEW WINDOW
-;; ======================================================================
-
-;; ----------------------------------------------------------------------
-;; 1. Preview window management (buffer-local per Dired buffer)
-;; ----------------------------------------------------------------------
-(defvar-local my/dired-preview-window nil
-  "The dedicated side window for previewing .txt files.")
-
-(defun my/dired--ensure-preview-window ()
-  "Return the dedicated preview side window, creating it once."
-  (unless (and my/dired-preview-window
-               (window-live-p my/dired-preview-window))
-    (let* ((buf (get-buffer-create "*my-dired-preview*"))
-           (win (display-buffer-in-side-window
-                 buf
-                 '((side . right)
-                   (window-width . 0.5)
-                   (dedicated . t)
-                   (inhibit-same-window . t)
-                   (reusable-frames . nil)))))
-      (set-window-dedicated-p win t)
-      (setq my/dired-preview-window win)
-      (with-current-buffer buf
-        (erase-buffer))))
-  my/dired-preview-window)
-
-;; ----------------------------------------------------------------------
-;; 2. Open .txt in the preview window – NO SPLIT, NO BLANK
-;; ----------------------------------------------------------------------
-(defun my/dired-other-window ()
-  "Open the file at point in the dedicated preview window.
-Reuses the same window, shows content immediately, never splits."
-  (interactive)
-  (let* ((orig-win (selected-window))
-         (file (dired-get-file-for-visit))
-         (prev-win (my/dired--ensure-preview-window))
-         (prev-buffer (window-buffer prev-win))
-         (new-buf (find-file-noselect file)))  ; open without display
-
-    ;; Switch to preview window
-    (select-window prev-win)
-
-    ;; Load file contents into the preview buffer
-    (with-current-buffer (window-buffer prev-win)
-      (let ((inhibit-read-only t))
-        (erase-buffer)
-        (insert-file-contents file)
-        (goto-char (point-min))
-        (set-buffer-modified-p nil)
-        (fundamental-mode)))  ; simple text mode
-
-    ;; Force redraw
-    ;; (redisplay t)
-
-    ;; Return to Dired
-    (select-window orig-win)
-    ))
-
-;; ----------------------------------------------------------------------
-;; 3. Play .ogg with mpv
-;; ----------------------------------------------------------------------
-(defun my/dired-mpv-play ()
-  "Play the marked file (or file at point) in mpv."
-  (interactive)
-  (let* ((files (dired-get-marked-files))
-         (args (append '("--no-terminal" "--force-window=no") files)))
-    (apply #'start-process "mpv-play" nil "mpv" args)))
-
-;; ----------------------------------------------------------------------
-;; 4. Smart dispatcher
-;; ----------------------------------------------------------------------
-(defun my/dired-smart-do ()
-  "Smart action based on file type."
-  (interactive)
-  (let* ((file (dired-get-file-for-visit))
-         (extension (file-name-extension file)))
-    (cond
-     ((string-equal extension "txt")
-      (my/dired-other-window))
-     ((string-equal extension "json")
-      (my/dired-other-window))
-     ((string-equal extension "ogg")
-      (my/dired-mpv-play))
-     (t
-      (progn
-        (message "No smart action defined for %s files. Continuing with dired-find-file." extension)
-        (dired-find-file)
-        )
-      ))))
-
-;; ----------------------------------------------------------------------
-;; 5. Keybindings (Doom Emacs `map!` style)
-;; ----------------------------------------------------------------------
-(with-eval-after-load 'dired
-  (map! :map dired-mode-map
-        :n ";" nil
-        :n "RET" nil
-        :n "RET" #'my/dired-smart-do
-                                        ; :n "S-<return>" nil
-                                        ; :n "S-<return>" #'my/dired-smart-do
-        :prefix (";" . "dired-;")
-        :n "p" #'my/dired-mpv-play
-        :n "o" #'my/dired-other-window
-        :n ";" #'my/dired-smart-do))
+(after! dirvish
+  (setq! dirvish-quick-access-entries
+         `(("h" "~/"                          "Home")
+           ("e" ,user-emacs-directory         "Emacs user directory")
+           ("c" "~/src/"                      "Code")
+           ("d" "~/Downloads/"                "Downloads")
+           ("m" "/mnt/"                       "Mounted drives")
+           )))
