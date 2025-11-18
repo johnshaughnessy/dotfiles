@@ -82,3 +82,7 @@ compinit
 
 # Added by LM Studio CLI (lms)
 export PATH="$PATH:/home/john/.cache/lm-studio/bin"
+alias claude="/home/john/.claude/local/claude"
+
+# Auto-Warpify
+[[ "$-" == *i* ]] && printf 'P$f{"hook": "SourcedRcFileForWarp", "value": { "shell": "zsh", "uname": "Linux" }}œ' 

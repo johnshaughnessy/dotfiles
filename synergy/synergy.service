@@ -1,0 +1,11 @@
+[Unit]
+Description=Synergy 3 Login service
+
+[Service]
+ExecStartPre=/opt/Synergy/resources/services/system/loginLauncherPre.sh
+ExecStart=/opt/Synergy/resources/services/system/loginLauncher.sh
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=graphical.target
